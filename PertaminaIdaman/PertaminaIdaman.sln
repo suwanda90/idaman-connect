@@ -1,0 +1,149 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D7CD2FAB-6D70-49F3-B4FC-A1DCAC880F3C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationCore", "src\WebApi\ApplicationCore\ApplicationCore.csproj", "{E59C4057-932A-4BA5-A4EB-76E69DDD98D9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "src\WebApi\Infrastructure\Infrastructure.csproj", "{AFD0A2B6-CDD8-4321-9D1D-CCFE48AD8E88}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web", "src\WebApp\Web\Web.csproj", "{1AE2E5EF-178D-4F7F-8738-14DB31C115D0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "src\WebApi\Api\Api.csproj", "{37CA62CE-E453-4C31-AB4D-B459B5C6CBAA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{AC7A1C11-7890-416C-8F57-747A3AEA0F37}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi", "WebApi", "{00E7F654-DE52-4E1F-9E83-508734CE2C95}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApp", "WebApp", "{C080B78C-4C68-4824-A5D2-0DA6C5D9F3FC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi", "WebApi", "{AC56A2CB-9E46-44F6-B9A6-7B5AE02A260F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApp", "WebApp", "{19076DBB-B345-4337-942C-0CA7FCB3C69C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitWebApiTests", "tests\WebApi\UnitWebApiTests\UnitWebApiTests.csproj", "{699B9304-7302-4067-A199-EE7AB12D9481}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationWebApiTests", "tests\WebApi\IntegrationWebApiTests\IntegrationWebApiTests.csproj", "{BA9FB954-620A-4595-A2FB-06B19D47788D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionalWebApiTests", "tests\WebApi\FunctionalWebApiTests\FunctionalWebApiTests.csproj", "{9CDE89E4-0FDB-411C-8AFF-C885D7BB9C0A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionalWebAppTests", "tests\WebApp\FunctionalWebAppTests\FunctionalWebAppTests.csproj", "{28BE1712-5A90-4F5F-9B99-D08408FFBF90}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationWebAppTests", "tests\WebApp\IntegrationWebAppTests\IntegrationWebAppTests.csproj", "{512F5021-1943-4DBF-B1F6-E59D803C88AD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitWebAppTests", "tests\WebApp\UnitWebAppTests\UnitWebAppTests.csproj", "{95F522B5-A860-4852-A847-C77BFF8C1530}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E59C4057-932A-4BA5-A4EB-76E69DDD98D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E59C4057-932A-4BA5-A4EB-76E69DDD98D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E59C4057-932A-4BA5-A4EB-76E69DDD98D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E59C4057-932A-4BA5-A4EB-76E69DDD98D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFD0A2B6-CDD8-4321-9D1D-CCFE48AD8E88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFD0A2B6-CDD8-4321-9D1D-CCFE48AD8E88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFD0A2B6-CDD8-4321-9D1D-CCFE48AD8E88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFD0A2B6-CDD8-4321-9D1D-CCFE48AD8E88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AE2E5EF-178D-4F7F-8738-14DB31C115D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AE2E5EF-178D-4F7F-8738-14DB31C115D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AE2E5EF-178D-4F7F-8738-14DB31C115D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AE2E5EF-178D-4F7F-8738-14DB31C115D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37CA62CE-E453-4C31-AB4D-B459B5C6CBAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37CA62CE-E453-4C31-AB4D-B459B5C6CBAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37CA62CE-E453-4C31-AB4D-B459B5C6CBAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37CA62CE-E453-4C31-AB4D-B459B5C6CBAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{699B9304-7302-4067-A199-EE7AB12D9481}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{699B9304-7302-4067-A199-EE7AB12D9481}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{699B9304-7302-4067-A199-EE7AB12D9481}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{699B9304-7302-4067-A199-EE7AB12D9481}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA9FB954-620A-4595-A2FB-06B19D47788D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA9FB954-620A-4595-A2FB-06B19D47788D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA9FB954-620A-4595-A2FB-06B19D47788D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA9FB954-620A-4595-A2FB-06B19D47788D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CDE89E4-0FDB-411C-8AFF-C885D7BB9C0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CDE89E4-0FDB-411C-8AFF-C885D7BB9C0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CDE89E4-0FDB-411C-8AFF-C885D7BB9C0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CDE89E4-0FDB-411C-8AFF-C885D7BB9C0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28BE1712-5A90-4F5F-9B99-D08408FFBF90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28BE1712-5A90-4F5F-9B99-D08408FFBF90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28BE1712-5A90-4F5F-9B99-D08408FFBF90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28BE1712-5A90-4F5F-9B99-D08408FFBF90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{512F5021-1943-4DBF-B1F6-E59D803C88AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{512F5021-1943-4DBF-B1F6-E59D803C88AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{512F5021-1943-4DBF-B1F6-E59D803C88AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{512F5021-1943-4DBF-B1F6-E59D803C88AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95F522B5-A860-4852-A847-C77BFF8C1530}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95F522B5-A860-4852-A847-C77BFF8C1530}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95F522B5-A860-4852-A847-C77BFF8C1530}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95F522B5-A860-4852-A847-C77BFF8C1530}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E59C4057-932A-4BA5-A4EB-76E69DDD98D9} = {00E7F654-DE52-4E1F-9E83-508734CE2C95}
+		{AFD0A2B6-CDD8-4321-9D1D-CCFE48AD8E88} = {00E7F654-DE52-4E1F-9E83-508734CE2C95}
+		{1AE2E5EF-178D-4F7F-8738-14DB31C115D0} = {C080B78C-4C68-4824-A5D2-0DA6C5D9F3FC}
+		{37CA62CE-E453-4C31-AB4D-B459B5C6CBAA} = {00E7F654-DE52-4E1F-9E83-508734CE2C95}
+		{00E7F654-DE52-4E1F-9E83-508734CE2C95} = {D7CD2FAB-6D70-49F3-B4FC-A1DCAC880F3C}
+		{C080B78C-4C68-4824-A5D2-0DA6C5D9F3FC} = {D7CD2FAB-6D70-49F3-B4FC-A1DCAC880F3C}
+		{AC56A2CB-9E46-44F6-B9A6-7B5AE02A260F} = {AC7A1C11-7890-416C-8F57-747A3AEA0F37}
+		{19076DBB-B345-4337-942C-0CA7FCB3C69C} = {AC7A1C11-7890-416C-8F57-747A3AEA0F37}
+		{699B9304-7302-4067-A199-EE7AB12D9481} = {AC56A2CB-9E46-44F6-B9A6-7B5AE02A260F}
+		{BA9FB954-620A-4595-A2FB-06B19D47788D} = {AC56A2CB-9E46-44F6-B9A6-7B5AE02A260F}
+		{9CDE89E4-0FDB-411C-8AFF-C885D7BB9C0A} = {AC56A2CB-9E46-44F6-B9A6-7B5AE02A260F}
+		{28BE1712-5A90-4F5F-9B99-D08408FFBF90} = {19076DBB-B345-4337-942C-0CA7FCB3C69C}
+		{512F5021-1943-4DBF-B1F6-E59D803C88AD} = {19076DBB-B345-4337-942C-0CA7FCB3C69C}
+		{95F522B5-A860-4852-A847-C77BFF8C1530} = {19076DBB-B345-4337-942C-0CA7FCB3C69C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F11EB694-12FA-4AAA-A4FB-37737395BA46}
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.VersionControlPolicy = $1
+		$0.DotNetNamingPolicy = $2
+		$2.DirectoryNamespaceAssociation = PrefixedHierarchical
+		$0.TextStylePolicy = $15
+		$3.FileWidth = 80
+		$3.TabsToSpaces = True
+		$3.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $4
+		$4.scope = text/x-csharp
+		$5.FileWidth = 80
+		$5.TabsToSpaces = True
+		$5.scope = text/x-web
+		$6.FileWidth = 80
+		$6.TabsToSpaces = True
+		$6.scope = text/x-vs
+		$7.TabsToSpaces = True
+		$7.NoTabsAfterNonTabs = True
+		$7.scope = text/x-cshtml-web
+		$7.inheritsSet = null
+		$0.HTMLFormattingPolicy = $10
+		$8.XHTMLCodingStyle = True
+		$8.scope = text/x-cshtml-web
+		$9.inheritsSet = null
+		$9.scope = text/x-html
+		$10.XHTMLCodingStyle = True
+		$10.scope = text/x-html
+		$11.inheritsSet = null
+		$11.scope = text/x-json
+		$0.JSONFormattingPolicy = $12
+		$12.AutoStructureCompletion = True
+		$12.BracePositions = SemiExpanded
+		$12.scope = text/x-json
+		$13.inheritsSet = null
+		$13.scope = text/x-css
+		$0.CSSFormattingPolicy = $14
+		$14.BracePositions = SemiExpanded
+		$14.scope = text/x-css
+		$15.inheritsSet = null
+		$15.scope = text/x-javascript
+	EndGlobalSection
+EndGlobal

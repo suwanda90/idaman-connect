@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Interfaces\BaseEntity\" />
+    <Folder Include="Helpers\Query\" />
+    <Folder Include="Interfaces\Query\" />
+    <Folder Include="Interfaces\Logging\" />
+    <Folder Include="Interfaces\Auth\" />
+    <Folder Include="Helpers\Api\Model\" />
+    <Folder Include="Helpers\BaseEntity\Model\" />
+    <Folder Include="Helpers\Datatables\Model\" />
+    <Folder Include="Helpers\Select2\Model\" />
+    <Folder Include="Helpers\File\" />
+    <Folder Include="Helpers\File\Model\" />
+    <Folder Include="Interfaces\Common\" />
+  </ItemGroup>
+</Project>
