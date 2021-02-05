@@ -51,9 +51,9 @@ namespace Infrastructure.Data
 
 
             var clientApiDefault = new ClientApi {
-                Name = "ProjectManagement",
-                ClientId = "ProjectManagement",
-                ClientSecret = "ProjectManagement",
+                Name = "PertaminaIdaman",
+                ClientId = "PertaminaIdaman",
+                ClientSecret = "PertaminaIdaman",
                 IsActive = true
             };
             clientApis.Add(clientApiDefault);

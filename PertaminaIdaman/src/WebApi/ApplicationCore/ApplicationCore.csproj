@@ -15,14 +15,6 @@
     <Folder Include="Interfaces\BaseEntity\" />
     <Folder Include="Helpers\Query\" />
     <Folder Include="Interfaces\Query\" />
-    <Folder Include="Interfaces\Logging\" />
     <Folder Include="Interfaces\Auth\" />
-    <Folder Include="Helpers\Api\Model\" />
-    <Folder Include="Helpers\BaseEntity\Model\" />
-    <Folder Include="Helpers\Datatables\Model\" />
-    <Folder Include="Helpers\Select2\Model\" />
-    <Folder Include="Helpers\File\" />
-    <Folder Include="Helpers\File\Model\" />
-    <Folder Include="Interfaces\Common\" />
   </ItemGroup>
 </Project>

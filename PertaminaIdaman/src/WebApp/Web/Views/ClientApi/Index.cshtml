@@ -1,0 +1,17 @@
+﻿@model List<Web.ViewModels.ClientApiViewModel>
+<h3>List Client Api</h3>
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Name</th>
+        <th>Client Id</th>
+        <th>Client Secret</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.Raw(item.Name)</td>
+            <td>@Html.Raw(item.ClientId)</td>
+            <td>@Html.Raw(item.ClientSecret)</td>
+        </tr>
+    }
+</table>

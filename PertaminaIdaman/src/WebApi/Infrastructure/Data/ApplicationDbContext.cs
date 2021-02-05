@@ -17,9 +17,6 @@ namespace Infrastructure.Data
 
         //Config
         public DbSet<ClientApi> ClientApi { get; private set; }
-        public DbSet<Role> Role { get; private set; }
-        public DbSet<Menu> Menu { get; private set; }
-        public DbSet<MenuRole> MenuRole { get; private set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

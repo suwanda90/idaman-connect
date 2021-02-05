@@ -1,7 +1,6 @@
 using ApplicationCore.Helpers;
 using ApplicationCore.Interfaces.Auth;
 using ApplicationCore.Interfaces.BaseEntity;
-using ApplicationCore.Interfaces.Common;
 using ApplicationCore.Interfaces.Logging;
 using ApplicationCore.Services.Auth;
 using Infrastructure.Data;
@@ -62,7 +61,7 @@ namespace Api
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "IP2P Outline Agreement API", Version = "v1" });
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Pertamina Idaman API", Version = "v1" });
                 c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First()); 
             });
 
@@ -71,7 +70,6 @@ namespace Api
             services.AddScoped(typeof(IAppLogger<>), typeof(AppLogger<>));
             services.AddTransient<IAuthService, AuthService>();
             services.AddScoped(typeof(IEfRepository<,>), typeof(EfRepository<,>));
-            services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<IJwt, Jwt>();
 
             // // this API will accept any access token from the authority
@@ -118,7 +116,7 @@ namespace Api
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("./v1/swagger.json", "IP2P Outline Agreement API");
+                c.SwaggerEndpoint("./v1/swagger.json", "Pertamina Idaman API");
             });
 
             app.UseHttpsRedirection();

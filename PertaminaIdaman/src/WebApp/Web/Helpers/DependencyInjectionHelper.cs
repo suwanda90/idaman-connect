@@ -14,6 +14,8 @@ namespace Web.Helpers
             //idaman
             services.AddTransient<IIdamanService, IdamanService>();
 
+            services.AddTransient<IClientApiService, ClientApiService>();
+
             return services;
         }
     }

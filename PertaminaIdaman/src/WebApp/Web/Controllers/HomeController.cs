@@ -35,10 +35,10 @@ namespace Web.Controllers
         [Authorize]
         public async Task<IActionResult> ProfileAsync()
         {
-            var userIdaman = _idamanService.GetUsersAsync().GetAwaiter().GetResult().Data;
+            var userIdaman = await _idamanService.GetUsersAsync();
             ViewBag.RoleName = await _idamanService.GetRoleNameAsync();
             ViewBag.TenantCode = await _idamanService.GetTenantCodeAsync();
-            return View(userIdaman);
+            return View(userIdaman.Data);
         }
 
         public async Task<IActionResult> Logout()

@@ -10,9 +10,6 @@ namespace ApplicationCore.Helpers
         {
             //config
             services.AddTransient<IClientApiService, ClientApiService>();
-            services.AddTransient<IRoleService, RoleService>();
-            services.AddTransient<IMenuService, MenuService>();
-            services.AddTransient<IMenuRoleService, MenuRoleService>();
 
             return services;
         }

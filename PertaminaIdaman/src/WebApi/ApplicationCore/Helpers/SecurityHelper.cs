@@ -1,93 +1,11 @@
 ﻿using System;
-using System.Globalization;
-using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 
 namespace ApplicationCore.Helpers
 {
     public static class SecurityHelper
     {
         private static readonly string Key = "121dsaS2.mqwqasaw162172yad76wqteygysmciw*!*@!99hahsa019219775)(!)*@*#&%*@%!&*GDIUAOIUS!^%@*&!I!(*@)!@_!+_+S";
-        public static bool IsGuid(this string candidate)
-        {
-            Regex isGuid = new Regex(@"^(\{){0,1}[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}(\}){0,1}$", RegexOptions.Compiled);
-            bool isValid = false;
-
-            if (candidate != null)
-            {
-                if (isGuid.IsMatch(candidate))
-                {
-                    isValid = true;
-                }
-            }
-
-            return isValid;
-        }
-
-        public static bool IsNumber(this string candidate)
-        {
-            bool isValid = false;
-
-            if (candidate != null)
-            {
-                isValid = candidate.All(char.IsDigit);
-            }
-
-            return isValid;
-        }
-
-        public static bool IsIntegralTypes(this string candidate, Type type)
-        {
-            bool isValid = false;
-
-            if (candidate != null)
-            {
-                if (type == typeof(sbyte) || type == typeof(sbyte?))
-                {
-                    isValid = sbyte.TryParse(candidate, out _);
-                }
-                else if (type == typeof(byte) || type == typeof(byte?))
-                {
-                    isValid = byte.TryParse(candidate, out _);
-                }
-                else if (type == typeof(short) || type == typeof(short?))
-                {
-                    isValid = short.TryParse(candidate, out _);
-                }
-                else if (type == typeof(ushort) || type == typeof(ushort?))
-                {
-                    isValid = ushort.TryParse(candidate, out _);
-                }
-                else if (type == typeof(int) || type == typeof(int?))
-                {
-                    isValid = int.TryParse(candidate, out _);
-                }
-                else if (type == typeof(long) || type == typeof(long?))
-                {
-                    isValid = long.TryParse(candidate, out _);
-                }
-                else if (type == typeof(ulong) || type == typeof(ulong?))
-                {
-                    isValid = ulong.TryParse(candidate, out _);
-                }
-            }
-
-            return isValid;
-        }
-
-        public static bool IsDate(this string candidate)
-        {
-            bool isValid = false;
-
-            if (candidate != null)
-            {
-                string format = "yyyy-MM-dd";
-                isValid = DateTime.TryParseExact(candidate, format, CultureInfo.InvariantCulture, DateTimeStyles.None, out _);
-            }
-
-            return isValid;
-        }
 
         public static bool IsBase64(this string base64String)
         {
