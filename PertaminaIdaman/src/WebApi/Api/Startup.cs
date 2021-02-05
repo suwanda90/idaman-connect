@@ -3,6 +3,7 @@ using ApplicationCore.Interfaces.Auth;
 using ApplicationCore.Interfaces.BaseEntity;
 using ApplicationCore.Interfaces.Logging;
 using ApplicationCore.Services.Auth;
+using IdentityServer4.AccessTokenValidation;
 using Infrastructure.Data;
 using Infrastructure.Logging;
 using Infrastructure.Services;
@@ -62,7 +63,7 @@ namespace Api
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Pertamina Idaman API", Version = "v1" });
-                c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First()); 
+                c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
             });
 
             //register service in here
@@ -72,26 +73,23 @@ namespace Api
             services.AddScoped(typeof(IEfRepository<,>), typeof(EfRepository<,>));
             services.AddTransient<IJwt, Jwt>();
 
-            // // this API will accept any access token from the authority
-            // services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
-            //.AddIdentityServerAuthentication(options =>
-            //{
-            //    options.Authority = "https://login.qa.idaman.pertamina.com/";
-            //    options.RequireHttpsMetadata = false;
-            //});
+            // this API will accept any access token from the authority
+            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+           .AddIdentityServerAuthentication(options =>
+           {
+               options.Authority = Configuration["Idaman:UrlLogin"];
+               options.RequireHttpsMetadata = false;
+           });
 
-            // string[] scopes =
-            // {
-            //     "file.download"
-            // };
+            var scopes = Configuration["Idaman:Scope"].Trim().Replace(" ", "").Split(",");
 
-            // services.AddAuthorization(options =>
-            // {
-            //     foreach (var scope in scopes)
-            //     {
-            //         options.AddPolicy(scope, policy => policy.RequireClaim("scope", "api://1cbac660-6414-4c4c-8dad-7f368edf9851/" + scope));
-            //     }
-            // });
+            services.AddAuthorization(options =>
+            {
+                foreach (var scope in scopes)
+                {
+                    options.AddPolicy(scope, policy => policy.RequireClaim("scope", "api://" + Configuration["Idaman:ObjectId"] + "/" + scope));
+                }
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,4 +1,5 @@
 ﻿using ApplicationCore.Interfaces.Config;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -15,6 +16,7 @@ namespace Api.Controllers
         }
 
         [HttpGet("get/all")]
+        [Authorize(Policy = "clientApi.readAll")]
         public async Task<IActionResult> GetAllAsync()
         {
             var data = await _service.GetAllAsync();
