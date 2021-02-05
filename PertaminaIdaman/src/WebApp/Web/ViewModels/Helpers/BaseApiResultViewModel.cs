@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Web.ViewModels.Helpers
+﻿namespace Web.ViewModels.Helpers
 {
     public class BaseApiResultViewModel<TEntity>
     {
