@@ -6,17 +6,20 @@ using System.Threading.Tasks;
 namespace Api.Controllers
 {
     [Route("api/[controller]")]
-    public class ClientApiController : ControllerBase
-    {
-        private readonly IClientApiService _service;
+    [ApiController]
+    [Authorize]
 
-        public ClientApiController(IClientApiService service)
+    public class RoleController : ControllerBase
+    {
+        private readonly IRoleService _service;
+
+        public RoleController(IRoleService service)
         {
             _service = service;
         }
 
+        [Authorize(Policy = "role.ReadAll")]
         [HttpGet("get/all")]
-        [Authorize(Policy = "clientApi.readAll")]
         public async Task<IActionResult> GetAllAsync()
         {
             var data = await _service.GetAllAsync();

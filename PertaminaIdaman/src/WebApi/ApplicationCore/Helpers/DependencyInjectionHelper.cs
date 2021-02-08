@@ -9,7 +9,7 @@ namespace ApplicationCore.Helpers
         public static IServiceCollection AddApplications(this IServiceCollection services)
         {
             //config
-            services.AddTransient<IClientApiService, ClientApiService>();
+            services.AddTransient<IRoleService, RoleService>();
 
             return services;
         }

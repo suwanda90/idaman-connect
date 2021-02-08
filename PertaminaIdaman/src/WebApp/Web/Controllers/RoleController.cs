@@ -5,19 +5,19 @@ using Web.Interfaces;
 
 namespace Web.Controllers
 {
-    public class ClientApiController : Controller
+    public class RoleController : Controller
     {
-        private readonly IClientApiService _clientApiService;
+        private readonly IRoleService _roleService;
 
-        public ClientApiController(IClientApiService clientApiService)
+        public RoleController(IRoleService roleService)
         {
-            _clientApiService = clientApiService;
+            _roleService = roleService;
         }
 
         [Authorize]
         public async Task<IActionResult> IndexAsync()
         {
-            var clientApis = await _clientApiService.GetAllAsync();
+            var clientApis = await _roleService.GetAllAsync();
             return View(clientApis);
         }
     }

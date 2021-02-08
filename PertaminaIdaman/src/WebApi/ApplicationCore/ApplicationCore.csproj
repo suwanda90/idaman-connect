@@ -15,6 +15,5 @@
     <Folder Include="Interfaces\BaseEntity\" />
     <Folder Include="Helpers\Query\" />
     <Folder Include="Interfaces\Query\" />
-    <Folder Include="Interfaces\Auth\" />
   </ItemGroup>
 </Project>

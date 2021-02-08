@@ -4,8 +4,8 @@ using Web.ViewModels;
 
 namespace Web.Interfaces
 {
-    public interface IClientApiService
+    public interface IRoleService
     {
-        Task<List<ClientApiViewModel>> GetAllAsync();
+        Task<List<RoleAppViewModel>> GetAllAsync();
     }
 }

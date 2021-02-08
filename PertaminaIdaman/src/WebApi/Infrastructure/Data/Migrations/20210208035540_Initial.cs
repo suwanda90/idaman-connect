@@ -8,7 +8,7 @@ namespace Infrastructure.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "ClientApi",
+                name: "Role",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false, defaultValueSql: "NEWID()"),
@@ -17,22 +17,18 @@ namespace Infrastructure.Data.Migrations
                     DateModified = table.Column<DateTime>(nullable: true),
                     ModifiedBy = table.Column<string>(nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
-                    Name = table.Column<string>(maxLength: 256, nullable: false),
-                    ClientId = table.Column<string>(maxLength: 256, nullable: false),
-                    ClientSecret = table.Column<string>(maxLength: 256, nullable: false),
-                    Token = table.Column<string>(nullable: true),
-                    ExpiredToken = table.Column<DateTime>(nullable: true)
+                    Name = table.Column<string>(maxLength: 256, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ClientApi", x => x.Id);
+                    table.PrimaryKey("PK_Role", x => x.Id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ClientApi");
+                name: "Role");
         }
     }
 }

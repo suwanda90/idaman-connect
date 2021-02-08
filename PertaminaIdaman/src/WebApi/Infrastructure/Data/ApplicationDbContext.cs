@@ -1,5 +1,4 @@
 ﻿using ApplicationCore.Entities;
-using ApplicationCore.Entities.Config;
 using EntityFrameworkCore.Triggers;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -16,7 +15,7 @@ namespace Infrastructure.Data
         }
 
         //Config
-        public DbSet<ClientApi> ClientApi { get; private set; }
+        public DbSet<Role> Role { get; private set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
