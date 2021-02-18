@@ -1,4 +1,4 @@
-﻿namespace Web.ViewModels
+﻿namespace IdAManConnect.ViewModels
 {
     public class AppSettingsViewModel
     {
@@ -17,11 +17,5 @@
         public string IdamanClientId { get; set; }
 
         public string IdamanClientSecret { get; set; }
-
-        public string IdamanApiScopes { get; set; }
-
-        public string IdamanApiClientId { get; set; }
-
-        public string IdamanApiClientSecret { get; set; }
     }
 }

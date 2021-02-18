@@ -6,13 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Web.Helpers;
-using Web.Interfaces;
-using Web.ViewModels;
-using Web.ViewModels.Helpers;
-using Web.ViewModels.Idaman;
+using IdAManConnect.Helpers;
+using IdAManConnect.Interfaces;
+using IdAManConnect.ViewModels;
+using IdAManConnect.ViewModels.Helpers;
+using IdAManConnect.ViewModels.Idaman;
 
-namespace Web.Services
+namespace IdAManConnect.Services
 {
     [Authorize(Policy = "Bearer")]
     public class IdamanService : IIdamanService
@@ -31,7 +31,7 @@ namespace Web.Services
             _config = configuration;
             _httpContextAccessor = httpContextAccessor;
             _appSettings = appSettings;
-            
+
             _client = AuthHelper.ClientIdamanBearear(_httpContextAccessor, _appSettings);
             email = _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "email")?.Value;
         }

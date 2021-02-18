@@ -27,8 +27,17 @@ namespace Web
         {
             Action<AppSettingsViewModel> appSettings = (opt =>
             {
+                opt.ApiUrl = Configuration["Api:Url"];
                 opt.ApplicationCookiesName = Configuration["Application:CookiesName"];
                 opt.ApplicationFolderApp = Configuration["Application:FolderApp"];
+                opt.IdamanUrlLogin = Configuration["Idaman:UrlLogin"];
+                opt.IdamanUrlApi = Configuration["Idaman:UrlApi"];
+                opt.IdamanClientId = Configuration["Idaman:ClientId"];
+                opt.IdamanClientSecret = Configuration["Idaman:ClientSecret"];
+                opt.IdamanScopes = Configuration["Idaman:Scopes"];
+                opt.IdamanApiClientId = Configuration["Idaman:ApiClientId"];
+                opt.IdamanApiClientSecret = Configuration["Idaman:ApiClientSecret"];
+                opt.IdamanApiScopes = Configuration["Idaman:ApiScopes"];
             });
 
             services.Configure(appSettings);
@@ -65,7 +74,7 @@ namespace Web
                     options.SaveTokens = true;
                     options.GetClaimsFromUserInfoEndpoint = true;
 
-                    var scopes = Configuration["Idaman:Scope"].Trim().Replace(" ", "").Split(",");
+                    var scopes = Configuration["Idaman:Scopes"].Trim().Replace(" ", "").Split(",");
                     foreach (var scope in scopes)
                     {
                         options.Scope.Add(scope);

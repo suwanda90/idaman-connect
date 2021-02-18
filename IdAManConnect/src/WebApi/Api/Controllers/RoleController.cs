@@ -18,8 +18,9 @@ namespace Api.Controllers
             _service = service;
         }
 
-        [Authorize(Policy = "role.ReadAll")]
         [HttpGet("get/all")]
+        [Authorize(Policy = "role.ReadAll")]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> GetAllAsync()
         {
             var data = await _service.GetAllAsync();

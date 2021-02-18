@@ -17,8 +17,8 @@ namespace Web.Controllers
         [Authorize]
         public async Task<IActionResult> IndexAsync()
         {
-            var clientApis = await _roleService.GetAllAsync();
-            return View(clientApis);
+            var roles = await _roleService.GetAllAsync();
+            return View(roles);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Web.ViewModels.Idaman
+namespace IdAManConnect.ViewModels.Idaman
 {
     public class TokenIdamanViewModel
     {
@@ -11,13 +11,5 @@ namespace Web.ViewModels.Idaman
         public string GrantType { get; set; }
 
         public string ClientSecret { get; set; }
-
-        public string ApiClientId { get; set; }
-
-        public string ApiScopes { get; set; }
-
-        public string ApiGrantType { get; set; }
-
-        public string ApiClientSecret { get; set; }
     }
 }

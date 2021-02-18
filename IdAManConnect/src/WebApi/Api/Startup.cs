@@ -31,7 +31,7 @@ namespace Api
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Pertamina Idaman API", Version = "v1" });
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "IdamanConnect API", Version = "v1" });
                 c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
             });
 
@@ -48,13 +48,14 @@ namespace Api
            .AddIdentityServerAuthentication(options =>
            {
                options.Authority = Configuration["Idaman:UrlLogin"];
-               options.RequireHttpsMetadata = false;
+               options.RequireHttpsMetadata = true;
            });
 
-            var scopes = Configuration["Idaman:Scope"].Trim().Replace(" ", "").Split(",");
+            var scopes = Configuration["Idaman:Scopes"].Trim().Replace(" ", "").Split(",");
 
             services.AddAuthorization(options =>
             {
+                options.AddPolicy("api.auth", policy => policy.RequireClaim("scope", "api.auth"));
                 foreach (var scope in scopes)
                 {
                     options.AddPolicy(scope, policy => policy.RequireClaim("scope", "api://" + Configuration["Idaman:ObjectId"] + "/" + scope));
@@ -83,7 +84,7 @@ namespace Api
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("./v1/swagger.json", "Pertamina Idaman API");
+                c.SwaggerEndpoint("./v1/swagger.json", "IdamanConnect API");
             });
 
             app.UseHttpsRedirection();
@@ -91,7 +92,7 @@ namespace Api
             app.UseCors(policy =>
             {
                 policy.WithOrigins(
-                    "http://localhost:44308");
+                    "https://localhost:44337");
 
                 policy.AllowAnyHeader();
                 policy.AllowAnyMethod();
