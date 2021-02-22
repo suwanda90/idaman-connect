@@ -35,9 +35,10 @@ namespace Web
                 opt.IdamanClientId = Configuration["Idaman:ClientId"];
                 opt.IdamanClientSecret = Configuration["Idaman:ClientSecret"];
                 opt.IdamanScopes = Configuration["Idaman:Scopes"];
-                opt.IdamanApiClientId = Configuration["Idaman:ApiClientId"];
-                opt.IdamanApiClientSecret = Configuration["Idaman:ApiClientSecret"];
-                opt.IdamanApiScopes = Configuration["Idaman:ApiScopes"];
+                opt.IdamanConnectApiObjectId = Configuration["IdamanConnectApi:ObjectId"];
+                opt.IdamanConnectApiClientId = Configuration["IdamanConnectApi:ClientId"];
+                opt.IdamanConnectApiClientSecret = Configuration["IdamanConnectApi:ClientSecret"];
+                opt.IdamanConnectApiScopes = Configuration["IdamanConnectApi:Scopes"];
             });
 
             services.Configure(appSettings);
@@ -74,7 +75,7 @@ namespace Web
                     options.SaveTokens = true;
                     options.GetClaimsFromUserInfoEndpoint = true;
 
-                    var scopes = Configuration["Idaman:Scopes"].Trim().Replace(" ", "").Split(",");
+                    var scopes = Configuration["Idaman:Scopes"].Replace(" ", "").Split(",");
                     foreach (var scope in scopes)
                     {
                         options.Scope.Add(scope);

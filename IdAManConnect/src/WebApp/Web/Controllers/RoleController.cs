@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Web.Interfaces;
+using Web.ViewModels;
 
 namespace Web.Controllers
 {
@@ -18,6 +19,19 @@ namespace Web.Controllers
         public async Task<IActionResult> IndexAsync()
         {
             var roles = await _roleService.GetAllAsync();
+            return View(roles);
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> CreateAsync(RoleAppViewModel roleAppViewModel)
+        {
+            var roles = await _roleService.CreateAsync(roleAppViewModel);
             return View(roles);
         }
     }

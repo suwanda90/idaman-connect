@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Web.Helpers;
 using Web.Interfaces;
@@ -29,12 +30,24 @@ namespace Web.Services
         {
             var response = await _client.GetAsync("Role/get/all");
             var contents = await response.Content.ReadAsStringAsync();
-            if(response.StatusCode == System.Net.HttpStatusCode.OK)
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 return JsonConvert.DeserializeObject<List<RoleAppViewModel>>(contents);
             }
 
             return new List<RoleAppViewModel>();
+        }
+
+        public async Task<string> CreateAsync(RoleAppViewModel param)
+        {
+            var response = await _client.PostAsync("Role", new StringContent(JsonConvert.SerializeObject(param), Encoding.UTF8, "application/json"));
+            var contents = await response.Content.ReadAsStringAsync();
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                return JsonConvert.DeserializeObject<string>(contents);
+            }
+
+            return string.Empty;
         }
     }
 }

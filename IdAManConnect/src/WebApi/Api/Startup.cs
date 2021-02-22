@@ -51,14 +51,20 @@ namespace Api
                options.RequireHttpsMetadata = true;
            });
 
-            var scopes = Configuration["Idaman:Scopes"].Trim().Replace(" ", "").Split(",");
+            var scopes = Configuration["Idaman:Scopes"].Replace(" ", "").Split(",");
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("api.auth", policy => policy.RequireClaim("scope", "api.auth"));
                 foreach (var scope in scopes)
                 {
-                    options.AddPolicy(scope, policy => policy.RequireClaim("scope", "api://" + Configuration["Idaman:ObjectId"] + "/" + scope));
+                    if (scope == "api.auth")
+                    {
+                        options.AddPolicy(scope, policy => policy.RequireClaim("scope", scope));
+                    }
+                    else
+                    {
+                        options.AddPolicy(scope, policy => policy.RequireClaim("scope", "api://" + Configuration["Idaman:ObjectId"] + "/" + scope));
+                    }
                 }
             });
         }

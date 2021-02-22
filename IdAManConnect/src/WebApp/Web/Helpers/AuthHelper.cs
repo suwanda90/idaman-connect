@@ -12,6 +12,30 @@ namespace Web.Helpers
 {
     public static class AuthHelper
     {
+        public static HttpClient ClientBearear(IHttpContextAccessor httpContextAccessor, AppSettingsViewModel appSettingsViewModel)
+        {
+            var client = new HttpClient
+            {
+                BaseAddress = new Uri(appSettingsViewModel.ApiUrl)
+            };
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", GetTokenIdaman(client, httpContextAccessor, appSettingsViewModel));
+
+            return client;
+        }
+
+        public static HttpClient ClientIdamanBearear(IHttpContextAccessor httpContextAccessor, AppSettingsViewModel appSettingsViewModel)
+        {
+            var client = new HttpClient
+            {
+                BaseAddress = new Uri(appSettingsViewModel.IdamanUrlApi)
+            };
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", GetTokenIdaman(client, httpContextAccessor, appSettingsViewModel));
+
+            return client;
+        }
+
         public static string GetTokenIdaman(HttpClient client, IHttpContextAccessor httpContextAccessor, AppSettingsViewModel appSettingsViewModel)
         {
             string token;
@@ -31,30 +55,6 @@ namespace Web.Helpers
             if (!string.IsNullOrEmpty(token) && ((dateTimeOffset.LocalDateTime - DateTimeOffset.Now).TotalSeconds < 60))
             {
                 token = GenerateTokenIdaman(client, httpContextAccessor, appSettingsViewModel);
-            }
-
-            return token;
-        }
-
-        public static string GetTokenIdamanApi(HttpClient client, IHttpContextAccessor httpContextAccessor, AppSettingsViewModel appSettingsViewModel)
-        {
-            string token;
-
-            if (!CookieHelper.IsExistCookie(SecurityHelper.ToBase64Encode(appSettingsViewModel.ApplicationCookiesName + ".Idaman.TokenApi"), httpContextAccessor))
-            {
-                token = GenerateTokenIdamanApi(client, httpContextAccessor, appSettingsViewModel);
-            }
-            else
-            {
-                token = CookieHelper.GetCookie(SecurityHelper.ToBase64Encode(appSettingsViewModel.ApplicationCookiesName + ".Idaman.TokenApi"), httpContextAccessor).ToBase64Decode();
-            }
-
-            var handler = new JwtSecurityTokenHandler();
-            var tokenSecurity = handler.ReadToken(token) as JwtSecurityToken;
-            DateTimeOffset dateTimeOffset = DateTimeOffset.FromUnixTimeSeconds(tokenSecurity.Payload.Exp.Value);
-            if (!string.IsNullOrEmpty(token) && ((dateTimeOffset.LocalDateTime - DateTimeOffset.Now).TotalSeconds < 60))
-            {
-                token = GenerateTokenIdamanApi(client, httpContextAccessor, appSettingsViewModel);
             }
 
             return token;
@@ -97,7 +97,43 @@ namespace Web.Helpers
             return string.Empty;
         }
 
-        private static string GenerateTokenIdamanApi(HttpClient client, IHttpContextAccessor httpContextAccessor, AppSettingsViewModel appSettingsViewModel)
+        public static HttpClient ClientApiBearear(IHttpContextAccessor httpContextAccessor, AppSettingsViewModel appSettingsViewModel)
+        {
+            var client = new HttpClient
+            {
+                BaseAddress = new Uri(appSettingsViewModel.ApiUrl)
+            };
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", GetTokenApiIdaman(client, httpContextAccessor, appSettingsViewModel));
+
+            return client;
+        }
+
+        public static string GetTokenApiIdaman(HttpClient client, IHttpContextAccessor httpContextAccessor, AppSettingsViewModel appSettingsViewModel)
+        {
+            string token;
+
+            if (!CookieHelper.IsExistCookie(SecurityHelper.ToBase64Encode(appSettingsViewModel.ApplicationCookiesName + ".Idaman.TokenApi"), httpContextAccessor))
+            {
+                token = GenerateTokenApiIdaman(client, httpContextAccessor, appSettingsViewModel);
+            }
+            else
+            {
+                token = CookieHelper.GetCookie(SecurityHelper.ToBase64Encode(appSettingsViewModel.ApplicationCookiesName + ".Idaman.TokenApi"), httpContextAccessor).ToBase64Decode();
+            }
+
+            var handler = new JwtSecurityTokenHandler();
+            var tokenSecurity = handler.ReadToken(token) as JwtSecurityToken;
+            DateTimeOffset dateTimeOffset = DateTimeOffset.FromUnixTimeSeconds(tokenSecurity.Payload.Exp.Value);
+            if (!string.IsNullOrEmpty(token) && ((dateTimeOffset.LocalDateTime - DateTimeOffset.Now).TotalSeconds < 60))
+            {
+                token = GenerateTokenApiIdaman(client, httpContextAccessor, appSettingsViewModel);
+            }
+
+            return token;
+        }
+
+        private static string GenerateTokenApiIdaman(HttpClient client, IHttpContextAccessor httpContextAccessor, AppSettingsViewModel appSettingsViewModel)
         {
             if (client != null)
             {
@@ -108,19 +144,35 @@ namespace Web.Helpers
 
                 var model = new TokenIdamanViewModel
                 {
-                    ApiScopes = appSettingsViewModel.IdamanApiScopes.Trim().Replace(" ", "").Replace(",", " "),
-                    ApiClientId = appSettingsViewModel.IdamanApiClientId,
-                    ApiClientSecret = appSettingsViewModel.IdamanApiClientSecret,
-                    ApiGrantType = "client_credentials"
+                    IdamanConnectApiScopes = appSettingsViewModel.IdamanConnectApiScopes.Replace(" ", "").Replace(",", " "),
+                    IdamanConnectApiClientId = appSettingsViewModel.IdamanConnectApiClientId,
+                    IdamanConnectApiClientSecret = appSettingsViewModel.IdamanConnectApiClientSecret,
+                    IdamanConnectApiGrantType = "client_credentials"
                 };
 
+                var apiScopes = string.Empty;
+
+                var scopes = model.IdamanConnectApiScopes.Split(" ");
+
+                foreach (var scope in scopes)
+                {
+                    if (scope == "api.auth")
+                    {
+                        apiScopes += scope + " ";
+                    }
+                    else
+                    {
+                        apiScopes += "api://" + appSettingsViewModel.IdamanConnectApiObjectId + "/" + scope + " ";
+                    }
+                }
+
                 var multiContent = new MultipartFormDataContent
-            {
-                { new StringContent(model.ApiClientId), "client_id" },
-                { new StringContent(model.ApiClientSecret), "client_secret" },
-                { new StringContent(model.ApiScopes), "scope" },
-                { new StringContent(model.ApiGrantType), "grant_type" }
-            };
+                {
+                    { new StringContent(model.IdamanConnectApiClientId), "client_id" },
+                    { new StringContent(model.IdamanConnectApiClientSecret), "client_secret" },
+                    { new StringContent(apiScopes.TrimEnd()), "scope" },
+                    { new StringContent(model.IdamanConnectApiGrantType), "grant_type" }
+                };
 
                 var response = client.PostAsync("connect/token", multiContent).GetAwaiter().GetResult();
                 var contents = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
@@ -132,42 +184,6 @@ namespace Web.Helpers
             }
 
             return string.Empty;
-        }
-
-        public static HttpClient ClientIdamanBearear(IHttpContextAccessor httpContextAccessor, AppSettingsViewModel appSettingsViewModel)
-        {
-            var client = new HttpClient
-            {
-                BaseAddress = new Uri(appSettingsViewModel.IdamanUrlApi)
-            };
-
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", GetTokenIdaman(client, httpContextAccessor, appSettingsViewModel));
-
-            return client;
-        }
-
-        public static HttpClient ClientBearear(IHttpContextAccessor httpContextAccessor, AppSettingsViewModel appSettingsViewModel)
-        {
-            var client = new HttpClient
-            {
-                BaseAddress = new Uri(appSettingsViewModel.ApiUrl)
-            };
-
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", GetTokenIdaman(client, httpContextAccessor, appSettingsViewModel));
-
-            return client;
-        }
-
-        public static HttpClient ClientApiBearear(IHttpContextAccessor httpContextAccessor, AppSettingsViewModel appSettingsViewModel)
-        {
-            var client = new HttpClient
-            {
-                BaseAddress = new Uri(appSettingsViewModel.ApiUrl)
-            };
-
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", GetTokenIdamanApi(client, httpContextAccessor, appSettingsViewModel));
-
-            return client;
         }
     }
 }

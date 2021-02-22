@@ -1,4 +1,5 @@
-﻿using ApplicationCore.Interfaces.Config;
+﻿using ApplicationCore.Entities;
+using ApplicationCore.Interfaces.Config;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -19,12 +20,19 @@ namespace Api.Controllers
         }
 
         [HttpGet("get/all")]
-        [Authorize(Policy = "role.ReadAll")]
-        //[ValidateAntiForgeryToken]
+        [Authorize(Policy = "role.readAll")]
         public async Task<IActionResult> GetAllAsync()
         {
             var data = await _service.GetAllAsync();
             return Ok(data);
+        }
+
+        [HttpPost]
+        [Authorize(Policy = "role.create")]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create([FromBody] Role data)
+        {
+            return Ok("OK");
         }
     }
 }

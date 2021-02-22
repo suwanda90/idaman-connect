@@ -18,10 +18,12 @@
 
         public string IdamanClientSecret { get; set; }
 
-        public string IdamanApiScopes { get; set; }
+        public string IdamanConnectApiObjectId { get; set; }
 
-        public string IdamanApiClientId { get; set; }
+        public string IdamanConnectApiClientSecret { get; set; }
 
-        public string IdamanApiClientSecret { get; set; }
+        public string IdamanConnectApiScopes { get; set; }
+
+        public string IdamanConnectApiClientId { get; set; }
     }
 }

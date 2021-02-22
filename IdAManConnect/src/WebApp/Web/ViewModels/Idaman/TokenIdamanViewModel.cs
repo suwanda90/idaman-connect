@@ -12,12 +12,12 @@ namespace Web.ViewModels.Idaman
 
         public string ClientSecret { get; set; }
 
-        public string ApiClientId { get; set; }
+        public string IdamanConnectApiClientId { get; set; }
 
-        public string ApiScopes { get; set; }
+        public string IdamanConnectApiScopes { get; set; }
 
-        public string ApiGrantType { get; set; }
+        public string IdamanConnectApiGrantType { get; set; }
 
-        public string ApiClientSecret { get; set; }
+        public string IdamanConnectApiClientSecret { get; set; }
     }
 }
