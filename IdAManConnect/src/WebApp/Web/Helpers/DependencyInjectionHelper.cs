@@ -11,13 +11,8 @@ namespace Web.Helpers
         public static IServiceCollection AddApplications(this IServiceCollection services)
         {
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            //idaman
             services.AddTransient<IIdamanService, IdamanService>();
-
-            services.AddTransient<IIdamanService, IdamanService>();
-
-            services.AddTransient<IRoleService, RoleService>();
-
+            
             return services;
         }
     }

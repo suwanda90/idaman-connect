@@ -27,7 +27,6 @@ namespace Web
         {
             Action<AppSettingsViewModel> appSettings = (opt =>
             {
-                opt.ApiUrl = Configuration["Api:Url"];
                 opt.ApplicationCookiesName = Configuration["Application:CookiesName"];
                 opt.ApplicationFolderApp = Configuration["Application:FolderApp"];
                 opt.IdamanUrlLogin = Configuration["Idaman:UrlLogin"];
@@ -35,10 +34,6 @@ namespace Web
                 opt.IdamanClientId = Configuration["Idaman:ClientId"];
                 opt.IdamanClientSecret = Configuration["Idaman:ClientSecret"];
                 opt.IdamanScopes = Configuration["Idaman:Scopes"];
-                opt.IdamanConnectApiObjectId = Configuration["IdamanConnectApi:ObjectId"];
-                opt.IdamanConnectApiClientId = Configuration["IdamanConnectApi:ClientId"];
-                opt.IdamanConnectApiClientSecret = Configuration["IdamanConnectApi:ClientSecret"];
-                opt.IdamanConnectApiScopes = Configuration["IdamanConnectApi:Scopes"];
             });
 
             services.Configure(appSettings);
